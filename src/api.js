@@ -31,10 +31,7 @@ export const useFetchPopularMovies = (popularMoviePageNumber) => {
         });
         setHasMorePopular(popularMoviePageNumber <= response.data.total_pages);
       })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
+      .catch(function (error) {})
       .then(function () {
         // always executed
         setLoadingPopular(false);
@@ -72,7 +69,6 @@ export const useFetchSearchedMovies = (searchedMoviePageNumber, query) => {
         )
         .then(function (response) {
           setSearchedMovies((prevData) => {
-            console.log("appendingSearch", prevData.length);
             return [...new Set([...prevData, ...response.data.results])];
           });
           setHasMoreSearched(
@@ -80,8 +76,6 @@ export const useFetchSearchedMovies = (searchedMoviePageNumber, query) => {
           );
         })
         .catch(function (error) {
-          // handle error
-          console.log(error);
           setSearchedMovies([]);
         })
         .then(function () {
@@ -110,9 +104,7 @@ export const useFetchMovieDetails = (movieId) => {
       .then(function (response) {
         setMovie(response.data);
       })
-      .catch(function (error) {
-        console.log(error);
-      })
+      .catch(function (error) {})
       .then(function () {
         setLoadingMovie(false);
       });
