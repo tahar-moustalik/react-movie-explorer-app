@@ -5,3 +5,10 @@
   margin: 0;
   padding: 0;
 }
+
+@media screen and (max-width: 640px) {
+  .movieList {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+  }
+}

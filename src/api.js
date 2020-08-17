@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-const API_KEY = "6e63c2317fbe963d76c3bdc2b785f6d1";
+const API_KEY = process.env.REACT_APP_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3/";
 
 export const routes = {

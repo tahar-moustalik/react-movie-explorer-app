@@ -53,6 +53,14 @@
   justify-content: space-between;
   align-items: center;
 }
+.footer-2 {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.footer-2 > div {
+  margin-right: 2rem;
+}
 
 .movieAdditionalInfo {
   display: flex;

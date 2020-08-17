@@ -1,7 +1,7 @@
 import React, { useRef, useState, useCallback } from "react";
 import { MovieSearchInput, MovieList } from "../components";
 import { useFetchPopularMovies, useFetchSearchedMovies } from "../api";
-
+import { motion, AnimatePresence } from "framer-motion";
 import Loader from "react-loader-spinner";
 
 export default function Home(props) {
@@ -70,27 +70,34 @@ export default function Home(props) {
     );
   }
   return (
-    <div>
-      <MovieSearchInput onSearch={searchMovies} searchValue={query} />
-      {query === "" ? (
-        <MovieList
-          results={popularMovies}
-          reference={lastPopularMovieResultRef}
-        />
-      ) : (
-        renderSearchedMoviesResults()
-      )}
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0, x: 200 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ ease: "easeOut", duration: 0.3 }}
+        exit={{ opacity: 0 }}
+      >
+        <MovieSearchInput onSearch={searchMovies} searchValue={query} />
+        {query === "" ? (
+          <MovieList
+            results={popularMovies}
+            reference={lastPopularMovieResultRef}
+          />
+        ) : (
+          renderSearchedMoviesResults()
+        )}
 
-      {(loadingPopular || loadingSearched) && (
-        <Loader
-          type="Rings"
-          color="#00BFFF"
-          height={100}
-          width={100}
-          timeout={3000} //3 secs
-          style={{ margin: "auto" }}
-        />
-      )}
-    </div>
+        {(loadingPopular || loadingSearched) && (
+          <Loader
+            type="Rings"
+            color="#00BFFF"
+            height={100}
+            width={100}
+            timeout={3000} //3 secs
+            style={{ margin: "auto" }}
+          />
+        )}
+      </motion.div>
+    </AnimatePresence>
   );
 }
